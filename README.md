@@ -79,5 +79,5 @@ public/       Assets publicos y mapas
 ## Notas
 
 - `node_modules`, `.next` y logs locales estan ignorados por Git.
-- El proyecto incluye `package-lock.json` para instalacion con npm.
-- Tambien existe `pnpm-lock.yaml` heredado del scaffold original.
+- El proyecto usa npm y versiona `package-lock.json`.
+- No se versiona `pnpm-lock.yaml` para evitar que Vercel instale con pnpm.
