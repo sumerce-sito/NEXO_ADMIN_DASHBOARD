@@ -2,6 +2,8 @@
 
 Dashboard administrativo construido con Next.js para monitorear productos, lotes, codigos QR, analitica y configuracion operacional.
 
+Hecho en: https://v0.app/sumercesito-2812/chat/nexo-admin-dashboard
+
 ## Stack
 
 - Next.js 16
