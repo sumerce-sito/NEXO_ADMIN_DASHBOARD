@@ -13,9 +13,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { lotes } from "@/lib/data"
+import { getLotes } from "@/lib/aurora"
 
-export default function LotesPage() {
+export default async function LotesPage() {
+  const lotes = await getLotes()
+
   return (
     <PageShell title="Lotes">
       <div className="flex flex-col gap-6">

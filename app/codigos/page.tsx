@@ -13,9 +13,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { codigos } from "@/lib/data"
+import { getCodigos } from "@/lib/aurora"
 
-export default function CodigosPage() {
+export default async function CodigosPage() {
+  const codigos = await getCodigos()
+
   return (
     <PageShell title="Códigos NFC">
       <div className="flex flex-col gap-6">

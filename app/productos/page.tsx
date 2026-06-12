@@ -13,9 +13,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { productos } from "@/lib/data"
+import { getProductos } from "@/lib/aurora"
 
-export default function ProductosPage() {
+export default async function ProductosPage() {
+  const productos = await getProductos()
+
   return (
     <PageShell title="Productos">
       <div className="flex flex-col gap-6">

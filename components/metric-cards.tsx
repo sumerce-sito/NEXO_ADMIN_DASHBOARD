@@ -1,35 +1,35 @@
 import { Package, Boxes, Nfc, ScanLine } from "lucide-react"
 import { Card } from "@/components/ui/card"
-import { metrics } from "@/lib/data"
+import type { Metrics } from "@/lib/aurora"
 
-const items = [
-  {
-    label: "Productos activos",
-    value: metrics.productosActivos,
-    delta: "+3 este mes",
-    icon: Package,
-  },
-  {
-    label: "Lotes generados",
-    value: metrics.lotesGenerados,
-    delta: "+12 este mes",
-    icon: Boxes,
-  },
-  {
-    label: "Códigos NFC activos",
-    value: metrics.codigosActivos.toLocaleString("es-CO"),
-    delta: "+520 esta semana",
-    icon: Nfc,
-  },
-  {
-    label: "Escaneos hoy",
-    value: metrics.escaneosHoy,
-    delta: "+8% vs ayer",
-    icon: ScanLine,
-  },
-]
+export function MetricCards({ metrics }: { metrics: Metrics }) {
+  const items = [
+    {
+      label: "Productos activos",
+      value: metrics.productosActivos,
+      delta: "+3 este mes",
+      icon: Package,
+    },
+    {
+      label: "Lotes generados",
+      value: metrics.lotesGenerados,
+      delta: "+12 este mes",
+      icon: Boxes,
+    },
+    {
+      label: "Códigos NFC activos",
+      value: metrics.codigosActivos.toLocaleString("es-CO"),
+      delta: "+520 esta semana",
+      icon: Nfc,
+    },
+    {
+      label: "Escaneos totales",
+      value: metrics.escaneosHoy,
+      delta: "acumulado",
+      icon: ScanLine,
+    },
+  ]
 
-export function MetricCards() {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {items.map((item) => {

@@ -10,9 +10,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { recentScans } from "@/lib/data"
+import { getMetrics, getRecentScans } from "@/lib/aurora"
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const [metrics, recentScans] = await Promise.all([getMetrics(), getRecentScans()])
+
   return (
     <PageShell title="Dashboard">
       <div className="flex flex-col gap-6">
@@ -25,7 +27,7 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        <MetricCards />
+        <MetricCards metrics={metrics} />
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
           <Card className="lg:col-span-3">
