@@ -5,13 +5,14 @@ import {
   lotes as mockLotes,
   codigos as mockCodigos,
   recentScans as mockRecentScans,
+  topProductos as mockTopProductos,
   type Producto,
   type Lote,
   type Codigo,
   type Scan,
 } from './data';
 
-const hasDb = !!process.env.DATABASE_URL;
+const hasDb = !!(process.env.DATABASE_URL || process.env.DB_HOST);
 
 // ── Métricas ──────────────────────────────────────────────────────────────────
 
@@ -20,7 +21,7 @@ export type Metrics = typeof mockMetrics;
 export async function getMetrics(): Promise<Metrics> {
   if (!hasDb) return mockMetrics;
   try {
-    const pool = getPool();
+    const pool = await getPool();
     const [p, l, c] = await Promise.all([
       pool.query(`SELECT COUNT(*) FROM productos WHERE activo = true`),
       pool.query(`SELECT COUNT(*) FROM lotes`),
@@ -42,7 +43,8 @@ export async function getMetrics(): Promise<Metrics> {
 export async function getProductos(): Promise<Producto[]> {
   if (!hasDb) return mockProductos;
   try {
-    const { rows } = await getPool().query(
+    const pool = await getPool();
+    const { rows } = await pool.query(
       `SELECT nombre, categoria, color, activo FROM productos ORDER BY created_at DESC`
     );
     return rows.map((r) => ({
@@ -61,7 +63,8 @@ export async function getProductos(): Promise<Producto[]> {
 export async function getLotes(): Promise<Lote[]> {
   if (!hasDb) return mockLotes;
   try {
-    const { rows } = await getPool().query(
+    const pool = await getPool();
+    const { rows } = await pool.query(
       `SELECT l.id, l.estado, l.total_tags, l.fecha_produccion, p.nombre AS producto
        FROM lotes l
        LEFT JOIN productos p ON p.id = l.producto_id
@@ -91,7 +94,8 @@ export async function getLotes(): Promise<Lote[]> {
 export async function getCodigos(): Promise<Codigo[]> {
   if (!hasDb) return mockCodigos;
   try {
-    const { rows } = await getPool().query(
+    const pool = await getPool();
+    const { rows } = await pool.query(
       `SELECT c.codigo_nfc, c.lote_id, c.estado, c.url_landing, p.nombre AS producto
        FROM codigos c
        LEFT JOIN productos p ON p.id = c.producto_id
@@ -117,12 +121,38 @@ export async function getCodigos(): Promise<Codigo[]> {
   }
 }
 
+// ── Top productos por escaneos ──────────────────────────────────────────────
+
+export type TopProducto = { nombre: string; escaneos: number };
+
+export async function getTopProductos(): Promise<TopProducto[]> {
+  if (!hasDb) return mockTopProductos;
+  try {
+    const pool = await getPool();
+    const { rows } = await pool.query(
+      `SELECT COALESCE(p.nombre, l.modelo, l.nombre, 'Pieza sin nombre') AS nombre,
+              SUM(c.escaneado_count) AS escaneos
+       FROM codigos c
+       LEFT JOIN productos p ON p.id = c.producto_id
+       LEFT JOIN lotes l ON l.id = c.lote_id
+       GROUP BY 1
+       HAVING SUM(c.escaneado_count) > 0
+       ORDER BY escaneos DESC
+       LIMIT 5`
+    );
+    return rows.map((r) => ({ nombre: r.nombre, escaneos: parseInt(r.escaneos) }));
+  } catch {
+    return mockTopProductos;
+  }
+}
+
 // ── Escaneos recientes ────────────────────────────────────────────────────────
 
 export async function getRecentScans(): Promise<Scan[]> {
   if (!hasDb) return mockRecentScans;
   try {
-    const { rows } = await getPool().query(
+    const pool = await getPool();
+    const { rows } = await pool.query(
       `SELECT c.codigo_nfc, p.nombre AS producto, c.escaneado_count, c.created_at
        FROM codigos c
        LEFT JOIN productos p ON p.id = c.producto_id
@@ -130,7 +160,6 @@ export async function getRecentScans(): Promise<Scan[]> {
        ORDER BY c.created_at DESC
        LIMIT 7`
     );
-    if (rows.length === 0) return mockRecentScans;
     return rows.map((r) => ({
       codigo:      r.codigo_nfc,
       producto:    r.producto ?? '—',

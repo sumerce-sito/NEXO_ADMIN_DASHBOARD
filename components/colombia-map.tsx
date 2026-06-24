@@ -4,15 +4,28 @@ import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps
 
 const GEO_URL = "/colombia.geo.json"
 
-const cities = [
-  { name: "Bogotá", coordinates: [-74.07, 4.71], size: 320 },
-  { name: "Medellín", coordinates: [-75.56, 6.25], size: 260 },
-  { name: "Cali", coordinates: [-76.53, 3.45], size: 210 },
-  { name: "Cartagena", coordinates: [-75.51, 10.39], size: 160 },
-  { name: "Fusagasugá", coordinates: [-74.36, 4.34], size: 120 },
-] as const
+const COORDS: Record<string, [number, number]> = {
+  "Bogotá": [-74.07, 4.71],
+  "Medellín": [-75.56, 6.25],
+  "Cali": [-76.53, 3.45],
+  "Cartagena": [-75.51, 10.39],
+  "Fusagasugá": [-74.36, 4.34],
+  "Barranquilla": [-74.8, 10.96],
+  "Bucaramanga": [-73.12, 7.12],
+  "Pereira": [-75.7, 4.81],
+}
 
-export function ColombiaMap() {
+type CiudadEscaneos = { ciudad: string; escaneos: number }
+
+export function ColombiaMap({ ciudades = [] }: { ciudades?: CiudadEscaneos[] }) {
+  const maxEscaneos = ciudades.length ? Math.max(...ciudades.map((c) => c.escaneos)) : 1
+  const cities = ciudades
+    .filter((c) => COORDS[c.ciudad])
+    .map((c) => ({
+      name: c.ciudad,
+      coordinates: COORDS[c.ciudad],
+      size: 80 + (c.escaneos / maxEscaneos) * 240,
+    }))
   return (
     <div className="relative w-full max-w-md">
       <ComposableMap

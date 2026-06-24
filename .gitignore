@@ -16,3 +16,5 @@ node_modules
 
 # Local dev logs
 .next-dev*.log
+
+.vercel
