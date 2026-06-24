@@ -15,19 +15,21 @@ import {
 } from "@/components/ui/table"
 import { getProductos } from "@/lib/aurora"
 
+export const dynamic = "force-dynamic"
+
 export default async function ProductosPage() {
   const productos = await getProductos()
 
   return (
-    <PageShell title="Productos">
+    <PageShell title="Products">
       <div className="flex flex-col gap-6">
         <PageHeader
-          title="Productos"
-          description="Catálogo de accesorios de cuero con autenticación NFC."
+          title="Products"
+          description="Catalog of leather accessories with NFC authentication."
           actions={
             <Button className="bg-[var(--forest)] text-white hover:bg-[var(--forest)]/90">
               <Plus className="size-4" />
-              Nuevo producto
+              New product
             </Button>
           }
         />
@@ -37,12 +39,12 @@ export default async function ProductosPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="pl-6">Imagen</TableHead>
-                  <TableHead>Nombre</TableHead>
-                  <TableHead>Categoría</TableHead>
+                  <TableHead className="pl-6">Image</TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Category</TableHead>
                   <TableHead>Color</TableHead>
-                  <TableHead>Estado</TableHead>
-                  <TableHead className="pr-6 text-right">Acciones</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="pr-6 text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

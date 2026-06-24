@@ -15,7 +15,7 @@ export function middleware(req: NextRequest) {
     if (user === ADMIN_USER && pass === ADMIN_PASS) return NextResponse.next()
   }
 
-  return new NextResponse('Acceso restringido — NEXO Admin', {
+  return new NextResponse('Access restricted — NEXO Admin', {
     status: 401,
     headers: { 'WWW-Authenticate': 'Basic realm="NEXO Admin QUIE"' },
   })

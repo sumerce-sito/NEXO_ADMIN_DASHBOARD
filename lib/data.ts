@@ -26,13 +26,13 @@ export const recentScans: Scan[] = [
 ]
 
 export const scansByDay = [
-  { dia: "Mié", escaneos: 198 },
-  { dia: "Jue", escaneos: 242 },
-  { dia: "Vie", escaneos: 310 },
-  { dia: "Sáb", escaneos: 415 },
-  { dia: "Dom", escaneos: 388 },
-  { dia: "Lun", escaneos: 276 },
-  { dia: "Mar", escaneos: 312 },
+  { dia: "Wed", escaneos: 198 },
+  { dia: "Thu", escaneos: 242 },
+  { dia: "Fri", escaneos: 310 },
+  { dia: "Sat", escaneos: 415 },
+  { dia: "Sun", escaneos: 388 },
+  { dia: "Mon", escaneos: 276 },
+  { dia: "Tue", escaneos: 312 },
 ]
 
 export type Producto = {

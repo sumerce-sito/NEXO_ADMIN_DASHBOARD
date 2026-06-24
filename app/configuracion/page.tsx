@@ -7,21 +7,21 @@ import { Separator } from "@/components/ui/separator"
 
 export default function ConfiguracionPage() {
   return (
-    <PageShell title="Configuración">
+    <PageShell title="Settings">
       <div className="flex max-w-2xl flex-col gap-6">
         <PageHeader
-          title="Configuración"
-          description="Ajustes generales de la marca y la plataforma NEXO."
+          title="Settings"
+          description="General settings for the brand and the NEXO platform."
         />
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Identidad de marca</CardTitle>
+            <CardTitle className="text-base">Brand identity</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
               <label htmlFor="marca" className="text-sm font-medium text-foreground">
-                Nombre de la marca
+                Brand name
               </label>
               <Input id="marca" defaultValue="QUIE®" className="bg-card" />
             </div>
@@ -33,7 +33,7 @@ export default function ConfiguracionPage() {
             </div>
             <div className="flex flex-col gap-1.5">
               <label htmlFor="dominio" className="text-sm font-medium text-foreground">
-                Dominio de verificación
+                Verification domain
               </label>
               <Input id="dominio" defaultValue="quie.co" className="bg-card" />
             </div>
@@ -42,17 +42,17 @@ export default function ConfiguracionPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Formato de códigos NFC</CardTitle>
+            <CardTitle className="text-base">NFC code format</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
               <label htmlFor="prefijo" className="text-sm font-medium text-foreground">
-                Prefijo
+                Prefix
               </label>
               <Input id="prefijo" defaultValue="QUIE-" className="bg-card font-mono" />
             </div>
             <p className="text-sm text-muted-foreground">
-              Ejemplo de código generado:{" "}
+              Sample generated code:{" "}
               <span className="font-mono text-foreground">QUIE-A7B3X9-42</span>
             </p>
           </CardContent>
@@ -61,9 +61,9 @@ export default function ConfiguracionPage() {
         <Separator />
 
         <div className="flex justify-end gap-2">
-          <Button variant="outline">Cancelar</Button>
+          <Button variant="outline">Cancel</Button>
           <Button className="bg-[var(--forest)] text-white hover:bg-[var(--forest)]/90">
-            Guardar cambios
+            Save changes
           </Button>
         </div>
       </div>

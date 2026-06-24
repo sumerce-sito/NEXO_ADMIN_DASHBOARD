@@ -49,7 +49,7 @@ export function ScansChart() {
               fontSize: 12,
             }}
             labelStyle={{ color: "#1a1a1a", fontWeight: 600 }}
-            formatter={(value: number) => [`${value} escaneos`, ""]}
+            formatter={(value: number) => [`${value} scans`, ""]}
           />
           <Bar dataKey="escaneos" fill="#c4622d" radius={[6, 6, 0, 0]} maxBarSize={44} />
         </BarChart>

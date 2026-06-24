@@ -10,7 +10,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'NEXO — QUIE®',
-  description: 'Panel de administración NEXO para QUIE® — accesorios de cuero con autenticación NFC.',
+  description: 'NEXO admin panel for QUIE® — leather accessories with NFC authentication.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -37,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className={`${inter.variable} bg-background`}>
+    <html lang="en" className={`${inter.variable} bg-background`}>
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

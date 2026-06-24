@@ -5,27 +5,27 @@ import type { Metrics } from "@/lib/aurora"
 export function MetricCards({ metrics }: { metrics: Metrics }) {
   const items = [
     {
-      label: "Productos activos",
+      label: "Active products",
       value: metrics.productosActivos,
-      delta: "+3 este mes",
+      delta: "+3 this month",
       icon: Package,
     },
     {
-      label: "Lotes generados",
+      label: "Batches generated",
       value: metrics.lotesGenerados,
-      delta: "+12 este mes",
+      delta: "+12 this month",
       icon: Boxes,
     },
     {
-      label: "Códigos NFC activos",
+      label: "Active NFC codes",
       value: metrics.codigosActivos.toLocaleString("es-CO"),
-      delta: "+520 esta semana",
+      delta: "+520 this week",
       icon: Nfc,
     },
     {
-      label: "Escaneos totales",
+      label: "Total scans",
       value: metrics.escaneosHoy,
-      delta: "acumulado",
+      delta: "all time",
       icon: ScanLine,
     },
   ]

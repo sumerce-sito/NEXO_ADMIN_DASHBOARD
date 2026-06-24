@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/table"
 import { getMetrics, getRecentScans } from "@/lib/aurora"
 
+export const dynamic = "force-dynamic"
+
 export default async function DashboardPage() {
   const [metrics, recentScans] = await Promise.all([getMetrics(), getRecentScans()])
 
@@ -20,10 +22,10 @@ export default async function DashboardPage() {
       <div className="flex flex-col gap-6">
         <div>
           <h2 className="text-xl font-semibold tracking-tight text-foreground text-balance">
-            Resumen general
+            Overview
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Estado de la autenticación NFC de QUIE® en tiempo real.
+            Real-time status of QUIE® NFC authentication.
           </p>
         </div>
 
@@ -32,18 +34,18 @@ export default async function DashboardPage() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
           <Card className="lg:col-span-3">
             <CardHeader>
-              <CardTitle className="text-base">Escaneos NFC recientes</CardTitle>
+              <CardTitle className="text-base">Recent NFC scans</CardTitle>
             </CardHeader>
             <CardContent className="px-0">
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="pl-6">Código</TableHead>
-                      <TableHead>Producto</TableHead>
-                      <TableHead>Ciudad</TableHead>
-                      <TableHead>Dispositivo</TableHead>
-                      <TableHead className="pr-6">Fecha</TableHead>
+                      <TableHead className="pl-6">Code</TableHead>
+                      <TableHead>Product</TableHead>
+                      <TableHead>City</TableHead>
+                      <TableHead>Device</TableHead>
+                      <TableHead className="pr-6">Date</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -66,7 +68,7 @@ export default async function DashboardPage() {
 
           <Card className="lg:col-span-2">
             <CardHeader>
-              <CardTitle className="text-base">Escaneos · últimos 7 días</CardTitle>
+              <CardTitle className="text-base">Scans · last 7 days</CardTitle>
             </CardHeader>
             <CardContent>
               <ScansChart />

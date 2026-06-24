@@ -15,19 +15,21 @@ import {
 } from "@/components/ui/table"
 import { getLotes } from "@/lib/aurora"
 
+export const dynamic = "force-dynamic"
+
 export default async function LotesPage() {
   const lotes = await getLotes()
 
   return (
-    <PageShell title="Lotes">
+    <PageShell title="Batches">
       <div className="flex flex-col gap-6">
         <PageHeader
-          title="Lotes"
-          description="Producción agrupada de tags NFC por referencia."
+          title="Batches"
+          description="NFC tag production grouped by reference."
           actions={
             <Button className="bg-[var(--forest)] text-white hover:bg-[var(--forest)]/90">
               <Plus className="size-4" />
-              Nuevo lote
+              New batch
             </Button>
           }
         />
@@ -37,12 +39,12 @@ export default async function LotesPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="pl-6">ID Lote</TableHead>
-                  <TableHead>Producto</TableHead>
-                  <TableHead>Fecha</TableHead>
-                  <TableHead>Estado</TableHead>
+                  <TableHead className="pl-6">Batch ID</TableHead>
+                  <TableHead>Product</TableHead>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Status</TableHead>
                   <TableHead>Total Tags</TableHead>
-                  <TableHead className="pr-6 text-right">Acciones</TableHead>
+                  <TableHead className="pr-6 text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

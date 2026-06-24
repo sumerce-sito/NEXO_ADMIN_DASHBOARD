@@ -14,11 +14,11 @@ import { cn } from "@/lib/utils"
 
 const nav = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/productos", label: "Productos", icon: Package },
-  { href: "/lotes", label: "Lotes", icon: Boxes },
-  { href: "/codigos", label: "Códigos NFC", icon: Nfc },
+  { href: "/productos", label: "Products", icon: Package },
+  { href: "/lotes", label: "Batches", icon: Boxes },
+  { href: "/codigos", label: "NFC Codes", icon: Nfc },
   { href: "/analytics", label: "Analytics", icon: BarChart3 },
-  { href: "/configuracion", label: "Configuración", icon: Settings },
+  { href: "/configuracion", label: "Settings", icon: Settings },
 ]
 
 export function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {

@@ -15,24 +15,26 @@ import {
 } from "@/components/ui/table"
 import { getCodigos } from "@/lib/aurora"
 
+export const dynamic = "force-dynamic"
+
 export default async function CodigosPage() {
   const codigos = await getCodigos()
 
   return (
-    <PageShell title="Códigos NFC">
+    <PageShell title="NFC Codes">
       <div className="flex flex-col gap-6">
         <PageHeader
-          title="Códigos NFC"
-          description="Identificadores únicos asociados a cada tag y su URL de verificación."
+          title="NFC Codes"
+          description="Unique identifiers linked to each tag and its verification URL."
           actions={
             <>
               <Button variant="outline">
                 <Download className="size-4" />
-                Exportar CSV
+                Export CSV
               </Button>
               <Button className="bg-[var(--forest)] text-white hover:bg-[var(--forest)]/90">
                 <Plus className="size-4" />
-                Generar códigos
+                Generate codes
               </Button>
             </>
           }
@@ -43,12 +45,12 @@ export default async function CodigosPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="pl-6">Código NFC</TableHead>
-                  <TableHead>Lote</TableHead>
-                  <TableHead>Producto</TableHead>
-                  <TableHead>Estado</TableHead>
+                  <TableHead className="pl-6">NFC Code</TableHead>
+                  <TableHead>Batch</TableHead>
+                  <TableHead>Product</TableHead>
+                  <TableHead>Status</TableHead>
                   <TableHead>URL</TableHead>
-                  <TableHead className="pr-6 text-right">Acciones</TableHead>
+                  <TableHead className="pr-6 text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

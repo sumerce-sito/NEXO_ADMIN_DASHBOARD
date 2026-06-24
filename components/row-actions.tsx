@@ -14,23 +14,23 @@ export function RowActions() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        render={<Button variant="ghost" size="icon" className="size-8" aria-label="Acciones" />}
+        render={<Button variant="ghost" size="icon" className="size-8" aria-label="Actions" />}
       >
         <MoreHorizontal className="size-4" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
         <DropdownMenuItem>
           <Eye className="size-4" />
-          Ver detalle
+          View details
         </DropdownMenuItem>
         <DropdownMenuItem>
           <Pencil className="size-4" />
-          Editar
+          Edit
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem variant="destructive">
           <Trash2 className="size-4" />
-          Eliminar
+          Delete
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

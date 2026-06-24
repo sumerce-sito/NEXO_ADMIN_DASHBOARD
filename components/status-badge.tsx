@@ -2,10 +2,10 @@ import { cn } from "@/lib/utils"
 import type { Estado } from "@/lib/data"
 
 const config: Record<Estado, { label: string; className: string }> = {
-  activo: { label: "Activo", className: "bg-[var(--forest)]/12 text-[var(--forest)]" },
-  completado: { label: "Completado", className: "bg-[var(--forest)]/12 text-[var(--forest)]" },
-  pendiente: { label: "Pendiente", className: "bg-[var(--gold)]/25 text-[#8a6a18]" },
-  inactivo: { label: "Inactivo", className: "bg-muted text-muted-foreground" },
+  activo: { label: "Active", className: "bg-[var(--forest)]/12 text-[var(--forest)]" },
+  completado: { label: "Completed", className: "bg-[var(--forest)]/12 text-[var(--forest)]" },
+  pendiente: { label: "Pending", className: "bg-[var(--gold)]/25 text-[#8a6a18]" },
+  inactivo: { label: "Inactive", className: "bg-muted text-muted-foreground" },
 }
 
 export function StatusBadge({ estado }: { estado: Estado }) {
